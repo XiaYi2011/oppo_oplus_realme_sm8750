@@ -202,6 +202,9 @@ fi
 echo ">>> 添加 defconfig 配置项..."
 DEFCONFIG_FILE=./common/arch/arm64/configs/gki_defconfig
 
+# 开启 user_ns 支持
+echo "CONFIG_USER_NS=y" >> "$DEFCONFIG_FILE"
+
 # 写入通用 SUSFS/KSU 配置
 echo "CONFIG_KSU=y" >> "$DEFCONFIG_FILE"
 if [[ "$APPLY_SUSFS" == [yY] ]]; then
