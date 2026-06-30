@@ -202,9 +202,6 @@ fi
 echo ">>> 添加 defconfig 配置项..."
 DEFCONFIG_FILE=./common/arch/arm64/configs/gki_defconfig
 
-# 开启 user_ns 支持
-echo "CONFIG_USER_NS=y" >> "$DEFCONFIG_FILE"
-
 # 写入通用 SUSFS/KSU 配置
 echo "CONFIG_KSU=y" >> "$DEFCONFIG_FILE"
 if [[ "$APPLY_SUSFS" == [yY] ]]; then
@@ -328,6 +325,8 @@ if [[ "$APPLY_DROIDSPACES" == [sSeE] ]]; then
   cd ..
   if [[ "$APPLY_DROIDSPACES" == [eE] ]]; then
     echo "正在启用容器环境扩展支持..."
+    # 开启 user_ns 支持
+    echo "CONFIG_USER_NS=y" >> "$DEFCONFIG_FILE"
     # 开启虚拟 HCI 设备支持
     echo "CONFIG_BT_HCIVHCI=y" >> "$DEFCONFIG_FILE"
     # 开启 systemd-coredump 支持
